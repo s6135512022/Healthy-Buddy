@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "257284092912",
+    "project_id": "cal-tracker-d6172",
+    "storage_bucket": "cal-tracker-d6172.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:257284092912:android:d5d3ee21b702172518e335",
+        "android_client_info": {
+          "package_name": "com.example.cal_tracker1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "257284092912-avr5vp854oq4jflihfe0et6c3vsvr5od.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.cal_tracker1",
+            "certificate_hash": "0e8267d3c1297228d3fb65296e3a96ff6de1def6"
+          }
+        },
+        {
+          "client_id": "257284092912-vuph0odc2pefgo77cq8otskc9c5kjvd9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD701cIFwX5he_VFouuVEHOdmz2Q5pMT1E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "257284092912-vuph0odc2pefgo77cq8otskc9c5kjvd9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
