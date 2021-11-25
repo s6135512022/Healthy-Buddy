@@ -11,9 +11,8 @@ class EditJobPage extends StatefulWidget {
   final Database database;
   final Job job;
 
-  static Future<void> show(BuildContext context, {Job job}) async {
-    final database = Provider.of<Database>(context, listen: false);
-    await Navigator.of(context).push(
+  static Future<void> show(BuildContext context, {Database database, Job job}) async {
+    await Navigator.of(context, rootNavigator: true).push(
       MaterialPageRoute(
         builder: (context) => EditJobPage(database: database, job: job),
         fullscreenDialog: true,
@@ -135,7 +134,7 @@ class _EditJobPageState extends State<EditJobPage> {
         onSaved: (value) => _name = value,
       ),
       TextFormField(
-        decoration: InputDecoration(labelText: 'Time(minute)'),
+        decoration: InputDecoration(labelText: 'Calories per hour'),
         initialValue: _ratePerHour != null ? '$_ratePerHour' : null,
         keyboardType: TextInputType.numberWithOptions(
           signed: false,

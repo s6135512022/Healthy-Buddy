@@ -30,6 +30,11 @@ dependencies:
   flutter_login_facebook: 0.4.0+1
   provider: 4.3.2+2
   cloud_firestore: 0.14.3
+  intl: 0.16.1
+  rxdart: 0.24.1
+  flutter_pdfview: ^1.0.0+10
+  path_provider: any
+  http: ^0.12.0+4
 
 dev_dependencies:
   flutter_test:
