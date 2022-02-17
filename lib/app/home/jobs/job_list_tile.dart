@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:cal_tracker1/app/home/models/job.dart';
 
 class JobListTile extends StatelessWidget {
-  const JobListTile({Key key, @required this.job, this.onTap}) : super(key: key);
+  const JobListTile({Key key, @required this.job, this.onTap})
+      : super(key: key);
   final Job job;
   final VoidCallback onTap;
 

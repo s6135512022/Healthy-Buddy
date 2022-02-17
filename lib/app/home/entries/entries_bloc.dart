@@ -68,6 +68,7 @@ class EntriesBloc {
             leadingText: jobDuration.name,
             middleText: Format.currency(jobDuration.pay),
             trailingText: Format.hours(jobDuration.durationInHours),
+            img: jobDuration.name, //*** PRJ-2.2 */
           ),
       ]
     ];

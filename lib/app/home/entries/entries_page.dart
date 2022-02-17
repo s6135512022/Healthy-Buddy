@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:cal_tracker1/app/home/entries/entries_bloc.dart';
@@ -19,6 +21,7 @@ class EntriesPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Workout history'),
+        centerTitle: true,
         elevation: 2.0,
       ),
       body: _buildContents(context),
@@ -32,7 +35,11 @@ class EntriesPage extends StatelessWidget {
       builder: (context, snapshot) {
         return ListItemsBuilder<EntriesListTileModel>(
           snapshot: snapshot,
-          itemBuilder: (context, model) => EntriesListTile(model: model),
+          itemBuilder: (context, model) {
+            //*** PRJ-2.2 */
+            log('${model.isHeader}-${model.leadingText}-${model.middleText}-${model.trailingText}');
+            return EntriesListTile(model: model);
+          },
         );
       },
     );

@@ -13,8 +13,6 @@ import 'package:cal_tracker1/services/auth.dart';
 import 'package:cal_tracker1/services/database.dart';
 
 class JobsPage extends StatelessWidget {
-
-
   Future<void> _delete(BuildContext context, Job job) async {
     try {
       final database = Provider.of<Database>(context, listen: false);
@@ -33,15 +31,7 @@ class JobsPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Workouts'),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.add, color: Colors.white),
-            onPressed: () => EditJobPage.show(
-              context,
-              database: Provider.of<Database>(context, listen: false),
-            ),
-          ),
-        ],
+        centerTitle: true,
       ),
       body: _buildContents(context),
     );
@@ -52,19 +42,54 @@ class JobsPage extends StatelessWidget {
     return StreamBuilder<List<Job>>(
       stream: database.jobsStream(),
       builder: (context, snapshot) {
-        return ListItemsBuilder<Job>(
-          snapshot: snapshot,
-          itemBuilder: (context, job) => Dismissible(
-            key: Key('job-${job.id}'),
-            background: Container(color: Colors.red),
-            direction: DismissDirection.endToStart,
-            onDismissed: (direction) => _delete(context, job),
-            child: JobListTile(
-              job: job,
-              onTap: () => JobEntriesPage.show(context, job),
+        if (snapshot.hasData) {
+          List<Job> jobs = snapshot.data;
+          return GridView.builder(
+            padding: EdgeInsets.all(30.0),
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              mainAxisSpacing: 30.0,
+              crossAxisSpacing: 30.0,
             ),
-          ),
-        );
+            itemCount: jobs.length,
+            itemBuilder: (ctx, idx) {
+              return InkWell(
+                onTap: () => JobEntriesPage.show(context, jobs[idx]),
+                child: Card(
+                  color: Color(0xFF201C3A),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.network(
+                        jobs[idx].img,
+                        fit: BoxFit.cover,
+                      ),
+                      SizedBox(height: 10.0),
+                      Text(
+                        jobs[idx].name,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              );
+            },
+          );
+        } else {
+          return Center(child: CircularProgressIndicator());
+        }
+
+        // return ListItemsBuilder<Job>(
+        //   snapshot: snapshot,
+        //   itemBuilder: (context, job) => JobListTile(
+        //     job: job,
+        //     onTap: () => JobEntriesPage.show(context, job),
+        //   ),
+        // );
       },
     );
   }

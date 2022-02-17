@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
@@ -47,6 +48,7 @@ class JobEntriesPage extends StatelessWidget {
         stream: database.jobStream(jobId: job.id),
         builder: (context, snapshot) {
           final job = snapshot.data;
+          log('job : $job');
           final jobName = job?.name ?? '';
           return Scaffold(
             appBar: AppBar(
@@ -54,14 +56,6 @@ class JobEntriesPage extends StatelessWidget {
               title: Text(jobName),
               centerTitle: true,
               actions: <Widget>[
-                IconButton(
-                  icon: Icon(Icons.edit, color: Colors.white),
-                  onPressed: () => EditJobPage.show(
-                    context,
-                    database: database,
-                    job: job,
-                  ),
-                ),
                 IconButton(
                   icon: Icon(Icons.add, color: Colors.white),
                   onPressed: () => EntryPage.show(

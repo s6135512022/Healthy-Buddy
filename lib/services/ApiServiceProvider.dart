@@ -7,7 +7,7 @@ class ApiServiceProvider {
   static final String BASE_URL = "https://www.ibm.com/downloads/cas/GJ5QVQ7X";
 
   static Future<String> loadPDF() async {
-    var response = await http.get(BASE_URL);
+    var response = await http.get(Uri.parse(BASE_URL));
 
     var dir = await getApplicationDocumentsDirectory();
     File file = new File("${dir.path}/data.pdf");
