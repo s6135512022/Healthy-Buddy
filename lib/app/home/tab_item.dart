@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 //แก้ลำดับการแสดงหน้าแรก
 enum TabItem {
   jobs,
+  map,
   entries,
   table,
   recipes,
@@ -17,6 +18,7 @@ class TabItemData {
 
   static const Map<TabItem, TabItemData> allTabs = {
     TabItem.jobs: TabItemData(title: 'Workouts', icon: Icons.fitness_center),
+    TabItem.map: TabItemData(title: 'Map', icon: Icons.location_on_outlined),
     TabItem.entries:
         TabItemData(title: 'Diaries', icon: Icons.collections_bookmark),
     TabItem.table:

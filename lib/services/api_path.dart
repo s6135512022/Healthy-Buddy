@@ -17,4 +17,13 @@ class APIPath {
   static String recipe(String uid, String recipeId) =>
       'users/$uid/recipes/$recipeId';
   static String recipes(String uid) => 'users/$uid/recipes';
+
+  //*** PRJ-4.1 */
+  static String trackingList(String uid) => 'users/$uid/tracking';
+  static String tracking(String uid, String trackingId, int trackingNum) =>
+      'users/$uid/tracking/$trackingId/data/$trackingNum';
+
+  //*** PRJ-4.2 */
+  static String tripList(String uid, String tripName) =>
+      'users/$uid/tracking/$tripName/data';
 }

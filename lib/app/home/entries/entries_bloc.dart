@@ -53,22 +53,28 @@ class EntriesBloc {
     return <EntriesListTileModel>[
       EntriesListTileModel(
         leadingText: 'All Workouts',
-        middleText: Format.currency(totalPay),
+        // middleText: Format.currency(totalPay),
+
+        middleText: totalPay.toStringAsFixed(0),
         trailingText: Format.hours(totalDuration),
       ),
       for (DailyJobsDetails dailyJobsDetails in allDailyJobsDetails) ...[
         EntriesListTileModel(
           isHeader: true,
           leadingText: Format.date(dailyJobsDetails.date),
-          middleText: Format.currency(dailyJobsDetails.pay),
+          //*** PRJ-4 */
+          // middleText: Format.currency(dailyJobsDetails.pay),
+          middleText: dailyJobsDetails.pay.toStringAsFixed(0),
           trailingText: Format.hours(dailyJobsDetails.duration),
         ),
         for (JobDetails jobDuration in dailyJobsDetails.jobsDetails)
           EntriesListTileModel(
             leadingText: jobDuration.name,
-            middleText: Format.currency(jobDuration.pay),
+
+            // middleText: Format.currency(jobDuration.pay),
+            middleText: jobDuration.pay.toStringAsFixed(0),
             trailingText: Format.hours(jobDuration.durationInHours),
-            img: jobDuration.name, //*** PRJ-2.2 */
+            img: jobDuration.name,
           ),
       ]
     ];

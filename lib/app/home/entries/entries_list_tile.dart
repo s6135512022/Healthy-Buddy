@@ -62,7 +62,7 @@ class _EntriesListTileState extends State<EntriesListTile> {
     return Container(
       // color: model.isHeader ? Colors.indigo[100] : null,
       padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
-      //*** PRJ-2.2 */
+
       child: widget.model.isHeader
           ? Padding(
               padding: const EdgeInsets.only(top: 20.0),

@@ -18,5 +18,8 @@ service cloud.firestore {
     match /users/{uid}/recipes/{document=**} {
     	allow read, write: if request.auth.uid == uid;
   	}
+    match /users/{uid}/tracking/{document=**} {
+    	allow read, write: if request.auth.uid == uid;
+  	}
   }
 }

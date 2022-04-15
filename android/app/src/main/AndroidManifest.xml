@@ -2,10 +2,16 @@
     package="com.example.cal_tracker1">
 
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION" />
 
     <application
         android:label="cal_tracker1"
         android:icon="@mipmap/ic_launcher">
+
+        <meta-data android:name="com.google.android.geo.API_KEY"
+               android:value="AIzaSyBGm80bFBnefVaNsr4C6HeOGhhjw-wScoA"/>
+
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

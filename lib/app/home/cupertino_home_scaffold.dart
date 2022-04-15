@@ -23,6 +23,7 @@ class CupertinoHomeScaffold extends StatelessWidget {
       tabBar: CupertinoTabBar(
         items: [
           _buildItem(TabItem.jobs),
+          _buildItem(TabItem.map),
           _buildItem(TabItem.entries),
           _buildItem(TabItem.table),
           _buildItem(TabItem.recipes),
@@ -48,10 +49,7 @@ class CupertinoHomeScaffold extends StatelessWidget {
         itemData.icon,
         color: color,
       ),
-      title: Text(
-        itemData.title,
-        style: TextStyle(color: color),
-      ),
+      label: itemData.title,
     );
   }
 }

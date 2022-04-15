@@ -570,16 +570,23 @@ class _RecipesPageState extends State<RecipesPage> {
                             onPressed: () async {
                               //*** PRJ-2.1 */
                               SelectDialog.showModal<Food>(context,
-                                  label: 'Food List', items: foodList,
+                                  label: 'Food List',
+                                  items: foodList,
+                                  //*** PRJ-4 */
+                                  onFind: (text) async => foodList
+                                      .where((e) => e.name.contains(text))
+                                      .toList(),
                                   itemBuilder: (context, item, isSelected) {
-                                return ListTile(
-                                  title: Text('${item.name} (${item.calorie})'),
-                                  selected: isSelected,
-                                );
-                              }, onChange: (value) {
-                                _txtName.text = value.name;
-                                _txtCalorie.text = value.calorie.toString();
-                              });
+                                    return ListTile(
+                                      title: Text(
+                                          '${item.name} (${item.calorie})'),
+                                      selected: isSelected,
+                                    );
+                                  },
+                                  onChange: (value) {
+                                    _txtName.text = value.name;
+                                    _txtCalorie.text = value.calorie.toString();
+                                  });
                             },
                           ),
                         ],

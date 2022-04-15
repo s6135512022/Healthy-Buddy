@@ -61,14 +61,18 @@ class Profile {
   }
 
   factory Profile.fromMap(Map<dynamic, dynamic> value, String id) {
-    return Profile(
-      age: value['age'],
-      gender: value['gender'],
-      weight: value['weight'],
-      height: value['height'],
-      goal: value['goal'],
-      frequency: value['frequency'],
-    );
+    if (value != null) {
+      return Profile(
+        age: value['age'],
+        gender: value['gender'],
+        weight: value['weight'],
+        height: value['height'],
+        goal: value['goal'],
+        frequency: value['frequency'],
+      );
+    } else {
+      return Profile();
+    }
   }
 
   Map<String, dynamic> toMap() {

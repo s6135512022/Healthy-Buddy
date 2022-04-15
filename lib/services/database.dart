@@ -1,8 +1,10 @@
 import 'dart:developer';
 
 import 'package:cal_tracker1/app/home/models/food.dart';
+import 'package:cal_tracker1/app/home/models/position.dart';
 import 'package:cal_tracker1/app/home/models/profile.dart';
 import 'package:cal_tracker1/app/home/models/recipe.dart';
+import 'package:cal_tracker1/app/home/models/tracking.dart';
 import 'package:meta/meta.dart';
 import 'package:cal_tracker1/app/home/models/entry.dart';
 import 'package:cal_tracker1/app/home/models/job.dart';
@@ -30,6 +32,14 @@ abstract class Database {
   Future<void> setRecipe(Recipe recipe);
   Future<void> deleteRecipe(Recipe recipe);
   Stream<List<Recipe>> recipesStream(String date);
+
+  //*** PRJ-4.1 */
+  Stream<List<String>> trackingList();
+  Future<void> trackingDocument(String docID, bool isWalking);
+  Future<void> addTracking(Tracking tracking);
+
+  //*** PRJ-4.2 */
+  Stream<List<MapPosition>> tripList(String tripName);
 }
 
 String documentIdFromCurrentDate() => DateTime.now().toIso8601String();
@@ -39,6 +49,38 @@ class FirestoreDatabase implements Database {
   final String uid;
 
   final _service = FirestoreService.instance;
+
+  @override
+  Stream<List<String>> trackingList() {
+    return _service.collectionStream<String>(
+        path: APIPath.trackingList(uid),
+        builder: (data, documentId) {
+          return documentId;
+        });
+  }
+
+  @override
+  Stream<List<MapPosition>> tripList(String tripName) {
+    return _service.collectionStream<MapPosition>(
+        path: APIPath.tripList(uid, tripName),
+        builder: (data, documentId) {
+          // log('documentId:$documentId  data:$data');
+          return MapPosition.fromMap(data, documentId);
+        });
+  }
+
+  @override
+  Future<void> trackingDocument(String docID, bool isWalking) =>
+      _service.setData(
+        path: '${APIPath.trackingList(uid)}/$docID',
+        data: {'isWalking': isWalking},
+      );
+
+  @override
+  Future<void> addTracking(Tracking tracking) => _service.setData(
+        path: APIPath.tracking(uid, tracking.id, tracking.num),
+        data: tracking.toMap(),
+      );
 
   @override
   Future<void> setJob(Job job) => _service.setData(
@@ -80,7 +122,10 @@ class FirestoreDatabase implements Database {
   @override //*** PRJ-1 */
   Stream<Profile> getProfile() => _service.documentStream(
         path: APIPath.profile(uid),
-        builder: (data, documentId) => Profile.fromMap(data, documentId),
+        builder: (data, documentId) {
+          log('profile : $documentId');
+          return Profile.fromMap(data, documentId);
+        },
       );
 
   @override //*** PRJ-2.1 */

@@ -28,13 +28,22 @@ class EmailSignInFormChangeNotifier extends StatefulWidget {
       _EmailSignInFormChangeNotifierState();
 }
 
-class _EmailSignInFormChangeNotifierState extends State<EmailSignInFormChangeNotifier> {
+class _EmailSignInFormChangeNotifierState
+    extends State<EmailSignInFormChangeNotifier> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final FocusNode _emailFocusNode = FocusNode();
   final FocusNode _passwordFocusNode = FocusNode();
 
   EmailSignInChangeModel get model => widget.model;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    // _emailController.text = 'test@test.com';
+    // _passwordController.text = 'testtest';
+  }
 
   @override
   void dispose() {

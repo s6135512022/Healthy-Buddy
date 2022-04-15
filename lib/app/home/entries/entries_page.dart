@@ -36,7 +36,7 @@ class EntriesPage extends StatelessWidget {
         return ListItemsBuilder<EntriesListTileModel>(
           snapshot: snapshot,
           itemBuilder: (context, model) {
-            //*** PRJ-2.2 */
+
             log('${model.isHeader}-${model.leadingText}-${model.middleText}-${model.trailingText}');
             return EntriesListTile(model: model);
           },
